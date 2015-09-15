@@ -1,0 +1,11 @@
+C:\Users\Hejsil\Copy\Studie\Code Projects\C#\GHCharter\Sample\bin\Debug\Sample.exe.config
+C:\Users\Hejsil\Copy\Studie\Code Projects\C#\GHCharter\Sample\bin\Debug\Sample.exe
+C:\Users\Hejsil\Copy\Studie\Code Projects\C#\GHCharter\Sample\bin\Debug\Sample.pdb
+C:\Users\Hejsil\Copy\Studie\Code Projects\C#\GHCharter\Sample\bin\Debug\Sanford.Collections.dll
+C:\Users\Hejsil\Copy\Studie\Code Projects\C#\GHCharter\Sample\bin\Debug\Sanford.Multimedia.dll
+C:\Users\Hejsil\Copy\Studie\Code Projects\C#\GHCharter\Sample\bin\Debug\Sanford.Multimedia.Midi.dll
+C:\Users\Hejsil\Copy\Studie\Code Projects\C#\GHCharter\Sample\bin\Debug\Sanford.Multimedia.Timers.dll
+C:\Users\Hejsil\Copy\Studie\Code Projects\C#\GHCharter\Sample\bin\Debug\Sanford.Threading.dll
+C:\Users\Hejsil\Copy\Studie\Code Projects\C#\GHCharter\Sample\obj\Debug\Sample.csprojResolveAssemblyReference.cache
+C:\Users\Hejsil\Copy\Studie\Code Projects\C#\GHCharter\Sample\obj\Debug\Sample.exe
+C:\Users\Hejsil\Copy\Studie\Code Projects\C#\GHCharter\Sample\obj\Debug\Sample.pdb

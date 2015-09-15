@@ -1,0 +1,15 @@
+C:\Users\Hejsil\Documents\Documents\Studie\Code Projects\C#\GHCharter\Midi\bin\Debug\MidiLib.dll
+C:\Users\Hejsil\Documents\Documents\Studie\Code Projects\C#\GHCharter\Midi\bin\Debug\MidiLib.pdb
+C:\Users\Hejsil\Documents\Documents\Studie\Code Projects\C#\GHCharter\Midi\obj\Debug\MidiLib.dll
+C:\Users\Hejsil\Documents\Documents\Studie\Code Projects\C#\GHCharter\Midi\obj\Debug\MidiLib.pdb
+C:\Users\Hejsil\Documents\Documents\Studie\Code Projects\C#\GHCharter\Midi\obj\Debug\MidiLib.csprojResolveAssemblyReference.cache
+C:\Users\Hejsil\Copy\Studie\Code Projects\C#\GHCharter\Midi\bin\Debug\MidiLib.dll
+C:\Users\Hejsil\Copy\Studie\Code Projects\C#\GHCharter\Midi\bin\Debug\MidiLib.pdb
+C:\Users\Hejsil\Copy\Studie\Code Projects\C#\GHCharter\Midi\obj\Debug\MidiLib.csprojResolveAssemblyReference.cache
+C:\Users\Hejsil\Copy\Studie\Code Projects\C#\GHCharter\Midi\obj\Debug\MidiLib.dll
+C:\Users\Hejsil\Copy\Studie\Code Projects\C#\GHCharter\Midi\obj\Debug\MidiLib.pdb
+D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\Midi\bin\Debug\MidiLib.dll
+D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\Midi\bin\Debug\MidiLib.pdb
+D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\Midi\obj\Debug\MidiLib.csprojResolveAssemblyReference.cache
+D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\Midi\obj\Debug\MidiLib.dll
+D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\Midi\obj\Debug\MidiLib.pdb

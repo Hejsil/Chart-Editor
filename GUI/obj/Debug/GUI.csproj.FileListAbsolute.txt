@@ -1,0 +1,48 @@
+C:\Users\Hejsil\Documents\Documents\Studie\Code Projects\C#\GHCharter\GUI\bin\Debug\GUI.exe.config
+C:\Users\Hejsil\Documents\Documents\Studie\Code Projects\C#\GHCharter\GUI\bin\Debug\GUI.exe
+C:\Users\Hejsil\Documents\Documents\Studie\Code Projects\C#\GHCharter\GUI\bin\Debug\GUI.pdb
+C:\Users\Hejsil\Documents\Documents\Studie\Code Projects\C#\GHCharter\GUI\obj\Debug\GUI.csprojResolveAssemblyReference.cache
+C:\Users\Hejsil\Documents\Documents\Studie\Code Projects\C#\GHCharter\GUI\obj\Debug\GUI.Form1.resources
+C:\Users\Hejsil\Documents\Documents\Studie\Code Projects\C#\GHCharter\GUI\obj\Debug\GUI.Properties.Resources.resources
+C:\Users\Hejsil\Documents\Documents\Studie\Code Projects\C#\GHCharter\GUI\obj\Debug\GUI.csproj.GenerateResource.Cache
+C:\Users\Hejsil\Documents\Documents\Studie\Code Projects\C#\GHCharter\GUI\obj\Debug\GUI.exe
+C:\Users\Hejsil\Documents\Documents\Studie\Code Projects\C#\GHCharter\GUI\obj\Debug\GUI.pdb
+C:\Users\Hejsil\Documents\Documents\Studie\Code Projects\C#\GHCharter\GUI\bin\Debug\ChartLib.dll
+C:\Users\Hejsil\Documents\Documents\Studie\Code Projects\C#\GHCharter\GUI\bin\Debug\MidiLib.dll
+C:\Users\Hejsil\Documents\Documents\Studie\Code Projects\C#\GHCharter\GUI\bin\Debug\ChartLib.pdb
+C:\Users\Hejsil\Documents\Documents\Studie\Code Projects\C#\GHCharter\GUI\bin\Debug\MidiLib.pdb
+C:\Users\Hejsil\Copy\Studie\Code Projects\C#\GHCharter\GUI\bin\Debug\GUI.exe.config
+C:\Users\Hejsil\Copy\Studie\Code Projects\C#\GHCharter\GUI\obj\Debug\GUI.exe
+C:\Users\Hejsil\Copy\Studie\Code Projects\C#\GHCharter\GUI\obj\Debug\GUI.pdb
+C:\Users\Hejsil\Copy\Studie\Code Projects\C#\GHCharter\GUI\bin\Debug\GUI.exe
+C:\Users\Hejsil\Copy\Studie\Code Projects\C#\GHCharter\GUI\bin\Debug\GUI.pdb
+C:\Users\Hejsil\Copy\Studie\Code Projects\C#\GHCharter\GUI\bin\Debug\ChartLib.dll
+C:\Users\Hejsil\Copy\Studie\Code Projects\C#\GHCharter\GUI\bin\Debug\MidiLib.dll
+C:\Users\Hejsil\Copy\Studie\Code Projects\C#\GHCharter\GUI\bin\Debug\ChartLib.pdb
+C:\Users\Hejsil\Copy\Studie\Code Projects\C#\GHCharter\GUI\bin\Debug\MidiLib.pdb
+C:\Users\Hejsil\Copy\Studie\Code Projects\C#\GHCharter\GUI\obj\Debug\GUI.csprojResolveAssemblyReference.cache
+C:\Users\Hejsil\Copy\Studie\Code Projects\C#\GHCharter\GUI\obj\Debug\GUI.Form1.resources
+C:\Users\Hejsil\Copy\Studie\Code Projects\C#\GHCharter\GUI\obj\Debug\GUI.Properties.Resources.resources
+C:\Users\Hejsil\Copy\Studie\Code Projects\C#\GHCharter\GUI\obj\Debug\GUI.csproj.GenerateResource.Cache
+D:\User\Documents\Copy rainbowhejsil@gmail.com\Studie\Code Projects\C#\GHCharter\GUI\bin\Debug\GUI.exe.config
+D:\User\Documents\Copy rainbowhejsil@gmail.com\Studie\Code Projects\C#\GHCharter\GUI\obj\Debug\GUI.exe
+D:\User\Documents\Copy rainbowhejsil@gmail.com\Studie\Code Projects\C#\GHCharter\GUI\obj\Debug\GUI.pdb
+C:\Users\Gaymen\Copy\Studie\Code Projects\C#\GHCharter\GUI\bin\Debug\GUI.exe.config
+C:\Users\Gaymen\Copy\Studie\Code Projects\C#\GHCharter\GUI\obj\Debug\GUI.exe
+C:\Users\Gaymen\Copy\Studie\Code Projects\C#\GHCharter\GUI\obj\Debug\GUI.pdb
+D:\Hejsil\Documents\Copy\Studie\Code Projects\C#\GHCharter\GUI\bin\Debug\GUI.exe.config
+D:\Hejsil\Documents\Copy\Studie\Code Projects\C#\GHCharter\GUI\obj\Debug\GUI.exe
+D:\Hejsil\Documents\Copy\Studie\Code Projects\C#\GHCharter\GUI\obj\Debug\GUI.pdb
+D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GUI\bin\Debug\GUI.exe.config
+D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GUI\obj\Debug\GUI.exe
+D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GUI\obj\Debug\GUI.pdb
+D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GUI\bin\Debug\GUI.exe
+D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GUI\bin\Debug\GUI.pdb
+D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GUI\bin\Debug\ChartLib.dll
+D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GUI\bin\Debug\MidiLib.dll
+D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GUI\bin\Debug\ChartLib.pdb
+D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GUI\bin\Debug\MidiLib.pdb
+D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GUI\obj\Debug\GUI.csprojResolveAssemblyReference.cache
+D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GUI\obj\Debug\GUI.Form1.resources
+D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GUI\obj\Debug\GUI.Properties.Resources.resources
+D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GUI\obj\Debug\GUI.csproj.GenerateResource.Cache
