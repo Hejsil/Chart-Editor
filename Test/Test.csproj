@@ -80,10 +80,6 @@
       <Project>{0decc649-75fa-46aa-9b84-1a7fc7656be6}</Project>
       <Name>ChartLib</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Midi\MidiLib.csproj">
-      <Project>{6088c875-fc14-4d7c-8bc0-1bf29d72f5cc}</Project>
-      <Name>MidiLib</Name>
-    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

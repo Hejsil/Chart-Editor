@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-using MidiLib;
+using Sanford.Multimedia.Midi;
+
 
 namespace ChartLib
 {
@@ -66,10 +67,10 @@ namespace ChartLib
     {
         public string Name { get; set; }
         public List<List<ChartEvent>> Tracks { get; set; }
-        public Int64 Resolution { get; set; }
-        public Int64 Offset { get; set; }
+        public int Resolution { get; set; }
+        public int Offset { get; set; }
 
-        public Chart(string name = "Untilted", Int64 resolution = 0, Int64 offset = 0)
+        public Chart(string name = "Untilted", int resolution = 0, int offset = 0)
         {
             Name = name;
             Resolution = resolution;
@@ -77,28 +78,28 @@ namespace ChartLib
             Tracks = new List<List<ChartEvent>>();
         }
 
-        public Chart(string path) : this(new MidiReader(path)) { }
-        public Chart(MidiReader midi) : this(midi, midi.Name) { }
-        public Chart(MidiReader midi, string name)
+        public Chart(string path) : this(new Sequence(path), Path.GetFileNameWithoutExtension(path)) { }
+        public Chart(Sequence midi) : this(midi, "Unknown Name") { }
+        public Chart(Sequence midi, string name)
         {
             Name = name;
             Tracks = new List<List<ChartEvent>>();
             Generate(midi);
         }
 
-        private void Generate(MidiReader midi)
+        private void Generate(Sequence midi)
         {
             Tracks.Clear();
 
-            if (midi.Division is TPB)
-                Resolution = (midi.Division as TPB).Ticks;
+            if ((midi.Division & 0x80) != 1)
+                Resolution = midi.Division;
             else
                 throw new NotImplementedException();
 
             GetEvents(midi);
         }
 
-        private void GetEvents(MidiReader midi)
+        private void GetEvents(Sequence midi)
         {
             //Adding SyncTrack.
             Tracks.Add(new List<ChartEvent>());
@@ -107,54 +108,83 @@ namespace ChartLib
 
             switch (midi.Format)
             {
-                case FormatType.SingleTrack:
-                    Tracks.Add(ConvertTrack(midi.Chunks[0]));
+                case 0:
+                    Tracks.Add(ConvertTrack(midi[0]));
                     break;
-                case FormatType.MultiTrack:
-                    ConvertTrack(midi.Chunks[0]);
-
-                    for (int i = 1; i < midi.Chunks.Count; i++)
-                        Tracks.Add(ConvertTrack(midi.Chunks[i]));
+                case 1:
+                    for (int i = 0; i < midi.Count; i++)
+                        Tracks.Add(ConvertTrack(midi[i]));
                     break;
-                case FormatType.IndepentedMultiTrack:
+                case 2:
                 default:
                     throw new NotImplementedException();
             }
         }
 
-        private List<ChartEvent> ConvertTrack(TrackChunk trackChunk)
+        private List<ChartEvent> ConvertTrack(Track track)
         {
             var syncTrack = Tracks[(int)ChartTrack.SyncTrack];
             int pos = 0;
-            var ons = new List<TempNote>();
+            var ons = new List<TempNote> ();
             var notes = new List<TempNote>();
             var events = new List<ChartEvent>();
             var mapping = new List<int>();
 
-            foreach (var evnt in trackChunk.Events)
+            foreach (var evnt in track.Iterator())
             {
-                pos += (int)evnt.DeltaTime;
+                var message = evnt.MidiMessage;
+                var bytes = message.GetBytes();
+                pos += evnt.DeltaTicks;
 
-                switch (evnt.Type)
+                switch (message.MessageType)
                 {
-                    case EventType.MetaEvent:
-                        var meta = (MetaEvent)evnt;
-                        switch (meta.MetaType)
+                    case MessageType.Channel:
+                        switch (bytes[0] & 0xF0)
                         {
-                            case MetaType.Tempo:
-                                decimal tempo;
-
-                                if (meta.TryToBpm(out tempo))
+                            case 0x80:
+                                for (int i = 0; i < ons.Count; i++)
                                 {
-                                    syncTrack.Add(new Tempo(pos, (int)(tempo * 1000)));
+                                    if (ons[i].Note == bytes[1])
+                                    {
+                                        var length = RoundOffToNearest(pos, 64) - ons[i].Position;
+                                        if (length >= Resolution)
+                                            ons[i].Length = length;
+
+                                        notes.Add(ons[i]);
+                                        ons.RemoveAt(i);
+                                        break;
+                                    }
                                 }
                                 break;
-                            case MetaType.SMPTEOffset:
+                            case 0x90:
+                                if (!mapping.Contains(bytes[1]))
+                                {
+                                    if (mapping.Count == 5)
+                                    {
+                                        mapping.Sort();
+                                        mapping = new List<int>();
+                                    }
+                                    else if (mapping.Count > 5)
+                                        throw new Exception("Mapping list became to big for unknown reasons.");
+
+                                    mapping.Add(bytes[1]);
+                                }
+
+                                ons.Add(new TempNote(RoundOffToNearest(pos, 64), 0, bytes[1], mapping));
                                 break;
-                            case MetaType.TimeSignature:
-                                syncTrack.Add(new TimeSignature(pos, meta.Values[0]));
+                            default:
                                 break;
-                            #region Not Used
+                        }
+                        break;
+                    case MessageType.SystemExclusive:
+                        break;
+                    case MessageType.SystemCommon:
+                        break;
+                    case MessageType.SystemRealtime:
+                        break;
+                    case MessageType.Meta:
+                        switch ((message as MetaMessage).MetaType)
+                        {
                             case MetaType.SequenceNumber:
                                 break;
                             case MetaType.Text:
@@ -175,92 +205,40 @@ namespace ChartLib
                                 break;
                             case MetaType.DeviceName:
                                 break;
-                            case MetaType.MidiChannelPrefix:
-                                break;
-                            case MetaType.MidiPort:
-                                break;
                             case MetaType.EndOfTrack:
+                                break;
+                            case MetaType.Tempo:
+                                int value = 0;
+                                int offset = bytes.Length - 1;
+
+                                foreach (var item in bytes)
+                                {
+                                    value += item << offset * 8;
+                                    offset--;
+                                }
+
+                                syncTrack.Add(new Tempo(RoundOffToNearest(pos, 64), (int)(60000000000 / value)));
+                                break;
+                            case MetaType.SmpteOffset:
+                                syncTrack.Add(new TimeSignature(RoundOffToNearest(pos, 64), bytes[0]));
+                                break;
+                            case MetaType.TimeSignature:
                                 break;
                             case MetaType.KeySignature:
                                 break;
-                            case MetaType.SequencerSpecificEvent:
+                            case MetaType.ProprietaryEvent:
                                 break;
-                            #endregion
                             default:
                                 break;
-	                    }
-                        break;
-                    case EventType.NoteOff:
-                        var off = (MidiChannelEvent)evnt;
-
-                        for (int i = 0; i < ons.Count; i++)
-                        {
-                            if (ons[i].Note == off.Value1)
-                            {
-                                var length = pos - ons[i].Position;
-                                if (length >= Resolution)
-                                    ons[i].Length = length;
-
-                                notes.Add(ons[i]);
-                                ons.RemoveAt(i);
-                                break;
-                            }
                         }
                         break;
-                    case EventType.NoteOn:
-                        var on = (MidiChannelEvent)evnt;
-
-                        if (!mapping.Contains(on.Value1))
-                        {
-                            if (mapping.Count == 5)
-                                mapping = new List<int>();
-                            else if (mapping.Count > 5)
-                                throw new Exception("Mapping list became to big for unknown reasons.");
-
-                            mapping.Add(on.Value1);
-                            mapping.Sort();
-                        }
-
-                        ons.Add(new TempNote(pos, 0, on.Value1, mapping));
-                        break;
-                    #region Not Used
-                    case EventType.Aftertouch:
-                        break;
-                    case EventType.ControlChange:
-                        break;
-                    case EventType.ProgramChange:
-                        break;
-                    case EventType.ChannelPressure:
-                        break;
-                    case EventType.PitchBend:
-                        break;
-                    case EventType.SystemExclusive:
-                        break;
-                    case EventType.MIDITimeCodeQuarterFrame:
-                        break;
-                    case EventType.SongPositionPointer:
-                        break;
-                    case EventType.SongSelect:
-                        break;
-                    case EventType.TuneRequest:
-                        break;
-                    case EventType.EndofExclusive:
-                        break;
-                    case EventType.TimingClock:
-                        break;
-                    case EventType.Start:
-                        break;
-                    case EventType.Continue:
-                        break;
-                    case EventType.Stop:
-                        break;
-                    case EventType.ActiveSensing:
-                        break;
-                    #endregion
                     default:
                         break;
                 }
             }
+
+
+            mapping.Sort();
 
             foreach (var note in ons)
                 notes.Add(note);
@@ -271,6 +249,20 @@ namespace ChartLib
             events.Sort();
 
             return events;
+        }
+
+        private int RoundOffToNearest(int value, int number)
+        {
+            int note = ((Resolution * 4) / number);
+            int rest = value % note;
+            int res = value - rest;
+
+            if (rest >= note / 2)
+            {
+                res += note;
+            }
+
+            return res;
         }
 
         public void WriteChart(string path) { WriteChart(path, Name); }

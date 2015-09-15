@@ -9,3 +9,14 @@ C:\Users\Hejsil\Copy\Studie\Code Projects\C#\GHCharter\Sample\bin\Debug\Sanford.
 C:\Users\Hejsil\Copy\Studie\Code Projects\C#\GHCharter\Sample\obj\Debug\Sample.csprojResolveAssemblyReference.cache
 C:\Users\Hejsil\Copy\Studie\Code Projects\C#\GHCharter\Sample\obj\Debug\Sample.exe
 C:\Users\Hejsil\Copy\Studie\Code Projects\C#\GHCharter\Sample\obj\Debug\Sample.pdb
+D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\Sample\bin\Debug\Sample.exe.config
+D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\Sample\obj\Debug\Sample.exe
+D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\Sample\obj\Debug\Sample.pdb
+D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\Sample\bin\Debug\Sample.exe
+D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\Sample\bin\Debug\Sample.pdb
+D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\Sample\bin\Debug\Sanford.Collections.dll
+D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\Sample\bin\Debug\Sanford.Multimedia.dll
+D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\Sample\bin\Debug\Sanford.Multimedia.Midi.dll
+D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\Sample\bin\Debug\Sanford.Multimedia.Timers.dll
+D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\Sample\bin\Debug\Sanford.Threading.dll
+D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\Sample\obj\Debug\Sample.csprojResolveAssemblyReference.cache

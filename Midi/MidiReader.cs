@@ -16,6 +16,7 @@ namespace MidiLib
     /// </summary>
     public class MidiReader
     {
+        #region Public Properties
         /// <summary>
         /// Name of the file (without extention)
         /// </summary>
@@ -40,7 +41,9 @@ namespace MidiLib
         /// The midifiles division. The way in which time is described in the midifile.
         /// </summary>
         public Division Division { get; set; }
+        #endregion
 
+        #region Constructors
         /// <summary>
         /// Create a empty MidiReader.
         /// </summary>
@@ -57,39 +60,62 @@ namespace MidiLib
         {
             ReadMidi(path);
         }
+        #endregion
 
+        #region Public Methods
+        /// <summary>
+        /// Clears all data in the MidiReader, and loads information from a file.
+        /// </summary>
+        /// <param name="path">Path to a midifile.</param>
         public void ReadMidi(string path)
         {
+            //Clearing current data in MidiReader
             Name = Path.GetFileNameWithoutExtension(path);
             Chunks.Clear();
             Format = default(FormatType);
             Tracks = default(ushort);
             Division = default(Division);
 
+            //Opens file on path
             using (var file = File.Open(path, FileMode.Open))
             using (var reader = new BinaryReader(file))
             {
+                bool headChunkFound = false;
                 int chunks = 1;
                 int chunkSize;
                 string chunkID;
 
+                //Runs until there is no more data chunks in the midi files
                 while (chunks != 0)
                 {
+                    //chunkID and and chunkSize is allways contained in the first 8 bytes of a data chunk
                     chunkID = new string(reader.ReadChars(4));
                     chunkSize = reader.ReadBytes(4).ToInt32();
 
                     switch (chunkID)
                     {
+                        /* This is the header chunk id.
+                         * This chunk should only appear once and contains relevant global data.
+                         * The first 2 bytes contain the midi format.
+                         * The next 2 bytes contain the number of tracks the midifile contains.
+                         * The final 2 bytes contain the midifiles division.
+                         */
                         case "MThd":
+                            if (headChunkFound)
+                                throw new FileLoadException(string.Format("More than one header chunk was found in the midifile"));
+
                             Format = (FormatType)reader.ReadBytes(2).ToInt32();
                             Tracks = (ushort)reader.ReadBytes(2).ToInt32();
                             Division = GetDivision(reader.ReadBytes(2));
                             chunks = Tracks;
+                            headChunkFound = true;
                             break;
+                        //This is the track chunk id. A track chunk contains midi events.
                         case "MTrk":
                             chunks--;
                             Chunks.Add(new TrackChunk(chunkSize, GetEvents(reader, chunkSize)));
                             break;
+                        //Standard midi files only have 2 kinds of chunks. If any other chunk id is found, an exception will the thrown.
                         default:
                             throw new FileLoadException(string.Format("Chunck Id: \"{1}\" is not valid for midi files."));
                     }
@@ -97,8 +123,42 @@ namespace MidiLib
             }
         }
 
+        /// <summary>
+        /// This method is used for debugging the MidiReader.
+        /// I write all the data from the MidiReader into a textfile, in a "readable" format.
+        /// </summary>
+        /// <param name="text">Is used to write important information at the end of the file</param>
+        public void WriteToFile(string text = "")
+        {
+            using (var str = new StreamWriter(@"C:\Users\Hejsil\Downloads\text.txt"))
+            {
+                str.WriteLine(string.Format("Format: {0}", Format));
+                str.WriteLine(string.Format("Tracks: {0}", Tracks));
+                str.WriteLine(string.Format("Division: {0}", Division));
+                str.WriteLine();
+
+                foreach (var chunk in Chunks)
+                    chunk.WriteToFile(str);
+
+                str.WriteLine(text);
+            }
+        }
+
+        public override string ToString()
+        {
+            var res = string.Format("Format: {0}\nTracks: {1}\nDivision: {2}\n\n", Format, Tracks, Division);
+
+            foreach (var chunck in Chunks)
+                res += chunck.ToString() + "\n";
+
+            return res;
+        }
+        #endregion
+
+        #region Private Methods
         private Division GetDivision(byte[] bytes)
         {
+            //If the first bit is 1, then the division describes Frames Per Second. Otherwise it is Ticks Per Beat.
             if (bytes[0] >= 0x80)
             {
                 bytes[0] -= 0x80;
@@ -174,7 +234,7 @@ namespace MidiLib
                     throw new NotValidEventException(type.ToString());
             }
         }
-        
+
         private Event GetMidiChannelEvent(int deltaTime, BinaryReader reader, byte byt, bool typeKnown = true, MidiChannelEvent prev = null)
         {
             EventType type;
@@ -241,31 +301,6 @@ namespace MidiLib
                     throw new NotValidEventException(metaType.ToString());
             }
         }
-
-        public override string ToString()
-        {
-            var res = string.Format("Format: {0}\nTracks: {1}\nDivision: {2}\n\n", Format, Tracks, Division);
-
-            foreach (var chunck in Chunks)
-                res += chunck.ToString() + "\n";
-
-            return res;
-        }
-
-        public void WriteToFile(string text = "")
-        {
-            using (var str = new StreamWriter(@"C:\Users\Hejsil\Downloads\text.txt"))
-            {
-                str.WriteLine(string.Format("Format: {0}", Format));
-                str.WriteLine(string.Format("Tracks: {0}", Tracks));
-                str.WriteLine(string.Format("Division: {0}", Division));
-                str.WriteLine();
-
-                foreach (var chunck in Chunks)
-                    chunck.WriteToFile(str);
-
-                str.WriteLine(text);
-            }
-        }
+        #endregion
     }
 }

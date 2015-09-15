@@ -12,9 +12,9 @@ namespace Sample
     {
         static void Main(string[] args)
         {
-            var midi = new Sequence(@"C:\Users\Hejsil\Downloads\midi\sia-chandelier.mid");
+            var midi = new Sequence(@"D:\Hejsil\Downloads\midi.mid");
 
-            using (var str = new StreamWriter(@"C:\Users\Hejsil\Downloads\text.txt"))
+            using (var str = new StreamWriter(@"D:\Hejsil\Downloads\text.txt"))
             {
                 str.WriteLine(string.Format("Format: {0}", midi.Format));
                 str.WriteLine(string.Format("Tracks: {0}", midi.Count));
@@ -29,9 +29,11 @@ namespace Sample
                     {
                         var stri = evt.DeltaTicks.ToString();
 
+                        stri += string.Format(" {0} {1}", evt.MidiMessage.MessageType.ToString(), evt.MidiMessage.GetType());
+
                         foreach (var item in evt.MidiMessage.GetBytes())
                         {
-                            stri += " " + item;
+                            stri += string.Format(" {0:X}", item);
                         }
 
                         str.WriteLine(stri);
@@ -39,8 +41,6 @@ namespace Sample
 
                 }
             }
-
-            Console.ReadKey();
         }
     }
 }

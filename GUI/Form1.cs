@@ -9,19 +9,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ChartLib;
-using MidiLib;
+using Sanford.Multimedia.Midi;
+
 
 namespace GUI
 {
     public partial class Form1 : Form
     {
-        MidiReader reader;
+        Sequence sequence;
         Chart chart;
         List<Exception> errors;
 
         public Form1()
         {
-            reader = new MidiReader();
+            sequence = new Sequence();
             errors = new List<Exception>();
             InitializeComponent();
         }
@@ -48,26 +49,26 @@ namespace GUI
 
                 foreach (var path in midis)
                 {
-                    try
-                    {
+                    //try
+                    //{
                         generatingmidi.Text = string.Format("Reading midi: {0}", path);
                         generatingmidi.Update();
-                        reader.ReadMidi(path);
+                        sequence.Load(path);
                         genratingProcressBar.PerformStep();
 
                         generatingmidi.Text = string.Format("Generating chart: {0}", path);
                         generatingmidi.Update();
-                        chart = new Chart(reader);
+                        chart = new Chart(sequence);
                         chart.WriteChart(folderBrowserDialog2.SelectedPath);
                         genratingProcressBar.PerformStep();
-                    }
-                    catch (Exception ex)
-                    {
-                        errors.Add(ex);
-                        error.Visible = true;
-                        error.Text = string.Format("Errors: {0}", errors.Count);
-                        error.Update();
-                    }
+                    //}
+                    //catch (Exception ex)
+                    //{
+                    //    errors.Add(ex);
+                    //    error.Visible = true;
+                    //    error.Text = string.Format("Errors: {0}", errors.Count);
+                    //    error.Update();
+                    //}
                 }
 
                 midisfound.Visible = false;

@@ -39,10 +39,13 @@ D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GUI\obj\Debug\GUI.pdb
 D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GUI\bin\Debug\GUI.exe
 D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GUI\bin\Debug\GUI.pdb
 D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GUI\bin\Debug\ChartLib.dll
-D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GUI\bin\Debug\MidiLib.dll
 D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GUI\bin\Debug\ChartLib.pdb
-D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GUI\bin\Debug\MidiLib.pdb
 D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GUI\obj\Debug\GUI.csprojResolveAssemblyReference.cache
 D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GUI\obj\Debug\GUI.Form1.resources
 D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GUI\obj\Debug\GUI.Properties.Resources.resources
 D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GUI\obj\Debug\GUI.csproj.GenerateResource.Cache
+D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GUI\bin\Debug\Sanford.Collections.dll
+D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GUI\bin\Debug\Sanford.Multimedia.dll
+D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GUI\bin\Debug\Sanford.Multimedia.Midi.dll
+D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GUI\bin\Debug\Sanford.Multimedia.Timers.dll
+D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GUI\bin\Debug\Sanford.Threading.dll

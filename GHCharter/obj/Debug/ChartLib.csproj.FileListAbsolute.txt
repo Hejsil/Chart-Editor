@@ -27,13 +27,11 @@ C:\Users\Hejsil\Documents\Documents\Studie\Code Projects\C#\GHCharter\GHCharter\
 D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GHCharter\bin\Debug\ChartLib.dll.config
 D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GHCharter\bin\Debug\ChartLib.dll
 D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GHCharter\bin\Debug\ChartLib.pdb
-D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GHCharter\bin\Debug\MidiLib.dll
 D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GHCharter\bin\Debug\Sanford.Collections.dll
 D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GHCharter\bin\Debug\Sanford.Multimedia.dll
 D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GHCharter\bin\Debug\Sanford.Multimedia.Midi.dll
 D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GHCharter\bin\Debug\Sanford.Multimedia.Timers.dll
 D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GHCharter\bin\Debug\Sanford.Threading.dll
-D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GHCharter\bin\Debug\MidiLib.pdb
 D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GHCharter\obj\Debug\ChartLib.csprojResolveAssemblyReference.cache
 D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GHCharter\obj\Debug\ChartLib.dll
 D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GHCharter\obj\Debug\ChartLib.pdb
