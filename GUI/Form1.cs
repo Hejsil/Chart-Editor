@@ -49,8 +49,8 @@ namespace GUI
 
                 foreach (var path in midis)
                 {
-                    //try
-                    //{
+                    try
+                    {
                         generatingmidi.Text = string.Format("Reading midi: {0}", path);
                         generatingmidi.Update();
                         sequence.Load(path);
@@ -58,18 +58,18 @@ namespace GUI
 
                         generatingmidi.Text = string.Format("Generating chart: {0}", path);
                         generatingmidi.Update();
-                        chart = new Chart(sequence);
+                        chart = new Chart(sequence, Path.GetFileNameWithoutExtension(path));
                         chart.WriteChart(folderBrowserDialog2.SelectedPath);
                         genratingProcressBar.PerformStep();
-                    //}
-                    //catch (Exception ex)
-                    //{
-                    //    errors.Add(ex);
-                    //    error.Visible = true;
-                    //    error.Text = string.Format("Errors: {0}", errors.Count);
-                    //    error.Update();
-                    //}
-                }
+                    }
+                        catch (Exception ex)
+                    {
+                        errors.Add(ex);
+                        error.Visible = true;
+                        error.Text = string.Format("Errors: {0}", errors.Count);
+                        error.Update();
+                    }
+            }
 
                 midisfound.Visible = false;
                 generatingmidi.Visible = false;
