@@ -75,12 +75,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\GHCharter\ChartLib.csproj">
-      <Project>{0decc649-75fa-46aa-9b84-1a7fc7656be6}</Project>
-      <Name>ChartLib</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

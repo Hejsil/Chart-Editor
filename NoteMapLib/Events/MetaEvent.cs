@@ -10,11 +10,10 @@ namespace NoteMapLib
 		SectionName,
 	}
 
-	public class MetaEvent : IComparable<MetaEvent>, IEvent
+	public class MetaEvent : IComparable<MetaEvent>
 	{
 		#region Fields
 		public int Posision { get; set; }
-		public int Length { get; set; }
 		public MetaEventType Type { get; private set; }
 		
 		public object Data
@@ -50,12 +49,11 @@ namespace NoteMapLib
 		#endregion
 
 		#region Constructors
-		public MetaEvent(int pos, MetaEventType type, object data, int length = 0)
+		public MetaEvent(int pos, MetaEventType type, object data)
 		{
 			Posision = pos;
 			Type = type;
 			Data = data;
-			Length = length;
 		}
 		#endregion
 

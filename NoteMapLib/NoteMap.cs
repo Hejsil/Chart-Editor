@@ -6,16 +6,21 @@ using System.Threading.Tasks;
 
 namespace NoteMapLib
 {
-    public class NoteMapLib : SortedSet<Track>
+    public class NoteMap : List<Track>
 	{
 		#region Fields
-		public SortedSet<MetaEvent> MetaEvents { get; set; }
+		public int Offset { get; set; }
+		public int Division { get; private set; }
+
+		public List<MetaEvent> MetaEvents { get; private set; }
 		#endregion
 
 		#region Constructors
-		public NoteMapLib()
+		public NoteMap(int division = 64, int offset = 0)
 		{
-			MetaEvents = new SortedSet<MetaEvent>();
+			Division = division;
+			Offset = offset;
+			MetaEvents = new List<MetaEvent>();
         }
 		#endregion
 

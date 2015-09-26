@@ -17,17 +17,32 @@ namespace NoteMapLib
 		Dance,
 		RealBass2,
 		RealGuitar2,
-		RealDrums
+		RealDrums,
+		Unknown
 	}
 
-	public class Track : SortedSet<TrackEvent>, IComparable<Track>
+	public enum TrackDifficulty
+	{
+		Easy,
+		Medium,
+		Hard,
+		Expert,
+		ExpertPlus
+	}
+
+	public class Track : List<TrackEvent>, IComparable<Track>
 	{
 		#region Fields
-		public TrackType Type { get; private set; }
+		public TrackType Type { get; set; }
+		public TrackDifficulty Difficulty { get; set; }
 		#endregion
 
 		#region Constructors
-
+		public Track(TrackType type = TrackType.Unknown, TrackDifficulty difficulty = TrackDifficulty.Expert)
+		{
+			Type = type;
+			Difficulty = difficulty;
+        }
 		#endregion
 
 		#region Public Methods

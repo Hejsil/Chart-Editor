@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChartLib", "GHCharter\ChartLib.csproj", "{0DECC649-75FA-46AA-9B84-1A7FC7656BE6}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUI", "GUI\GUI.csproj", "{B53FB963-75EB-442F-8787-BC87428F7D54}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{3CF9B654-9188-49F2-8599-FDA797473689}"
@@ -13,16 +11,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample", "Sample\Sample.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoteMapLib", "NoteMapLib\NoteMapLib.csproj", "{E31342BD-12DC-4D3E-B92F-7C34093B172F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileIOLib", "FileIO\FileIOLib.csproj", "{FEA5966E-A78C-413D-9B3F-65B4E443D996}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0DECC649-75FA-46AA-9B84-1A7FC7656BE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0DECC649-75FA-46AA-9B84-1A7FC7656BE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0DECC649-75FA-46AA-9B84-1A7FC7656BE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0DECC649-75FA-46AA-9B84-1A7FC7656BE6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B53FB963-75EB-442F-8787-BC87428F7D54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B53FB963-75EB-442F-8787-BC87428F7D54}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B53FB963-75EB-442F-8787-BC87428F7D54}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +35,10 @@ Global
 		{E31342BD-12DC-4D3E-B92F-7C34093B172F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E31342BD-12DC-4D3E-B92F-7C34093B172F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E31342BD-12DC-4D3E-B92F-7C34093B172F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEA5966E-A78C-413D-9B3F-65B4E443D996}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEA5966E-A78C-413D-9B3F-65B4E443D996}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEA5966E-A78C-413D-9B3F-65B4E443D996}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEA5966E-A78C-413D-9B3F-65B4E443D996}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
