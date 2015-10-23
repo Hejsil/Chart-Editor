@@ -38,8 +38,6 @@ D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GUI\obj\Debug\GUI.exe
 D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GUI\obj\Debug\GUI.pdb
 D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GUI\bin\Debug\GUI.exe
 D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GUI\bin\Debug\GUI.pdb
-D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GUI\bin\Debug\ChartLib.dll
-D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GUI\bin\Debug\ChartLib.pdb
 D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GUI\obj\Debug\GUI.csprojResolveAssemblyReference.cache
 D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GUI\obj\Debug\GUI.Properties.Resources.resources
 D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GUI\obj\Debug\GUI.csproj.GenerateResource.Cache
@@ -55,3 +53,4 @@ D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GUI\bin\Debug\Fractions.dll
 D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GUI\bin\Debug\FileIOLib.pdb
 D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GUI\bin\Debug\NoteMapLib.pdb
 D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GUI\bin\Debug\Fractions.xml
+D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\GUI\obj\Debug\GUI.BatchMidiWindow.resources

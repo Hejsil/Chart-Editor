@@ -1,4 +1,6 @@
-﻿namespace GUI
+﻿using System;
+
+namespace GUI
 {
     partial class MainWindow
     {
@@ -33,9 +35,6 @@
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
 			this.exportAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.guitarHero3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.phaseShiftToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.foFixToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
 			this.toolStripDropDownButton3 = new System.Windows.Forms.ToolStripDropDownButton();
 			this.toolStripDropDownButton4 = new System.Windows.Forms.ToolStripDropDownButton();
@@ -43,12 +42,9 @@
 			this.toolStripDropDownButton6 = new System.Windows.Forms.ToolStripDropDownButton();
 			this.generateFromToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.midiFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.label1 = new System.Windows.Forms.Label();
-			this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-			this.folderBrowserDialog2 = new System.Windows.Forms.FolderBrowserDialog();
-			this.midisfound = new System.Windows.Forms.Label();
 			this.generateMidiFileDialog = new System.Windows.Forms.OpenFileDialog();
 			this.exportGuitarHero3FileDialog = new System.Windows.Forms.SaveFileDialog();
+			this.midiFilesBatchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -70,7 +66,7 @@
             this.toolStripDropDownButton6});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
-			this.toolStrip1.Size = new System.Drawing.Size(387, 25);
+			this.toolStrip1.Size = new System.Drawing.Size(487, 25);
 			this.toolStrip1.TabIndex = 1;
 			this.toolStrip1.Text = "toolStrip1";
 			// 
@@ -87,32 +83,9 @@
 			// 
 			// exportAsToolStripMenuItem
 			// 
-			this.exportAsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.guitarHero3ToolStripMenuItem,
-            this.phaseShiftToolStripMenuItem,
-            this.foFixToolStripMenuItem});
 			this.exportAsToolStripMenuItem.Name = "exportAsToolStripMenuItem";
-			this.exportAsToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
-			this.exportAsToolStripMenuItem.Text = "Export To";
-			// 
-			// guitarHero3ToolStripMenuItem
-			// 
-			this.guitarHero3ToolStripMenuItem.Name = "guitarHero3ToolStripMenuItem";
-			this.guitarHero3ToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
-			this.guitarHero3ToolStripMenuItem.Text = "Guitar Hero 3";
-			this.guitarHero3ToolStripMenuItem.Click += new System.EventHandler(this.guitarHero3ToolStripMenuItem_Click);
-			// 
-			// phaseShiftToolStripMenuItem
-			// 
-			this.phaseShiftToolStripMenuItem.Name = "phaseShiftToolStripMenuItem";
-			this.phaseShiftToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
-			this.phaseShiftToolStripMenuItem.Text = "Phase Shift";
-			// 
-			// foFixToolStripMenuItem
-			// 
-			this.foFixToolStripMenuItem.Name = "foFixToolStripMenuItem";
-			this.foFixToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
-			this.foFixToolStripMenuItem.Text = "FoFix";
+			this.exportAsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.exportAsToolStripMenuItem.Text = "Export as...";
 			// 
 			// toolStripDropDownButton2
 			// 
@@ -164,52 +137,41 @@
 			// generateFromToolStripMenuItem
 			// 
 			this.generateFromToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.midiFileToolStripMenuItem});
+            this.midiFileToolStripMenuItem,
+            this.midiFilesBatchToolStripMenuItem});
 			this.generateFromToolStripMenuItem.Name = "generateFromToolStripMenuItem";
 			this.generateFromToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-			this.generateFromToolStripMenuItem.Text = "Generate From";
+			this.generateFromToolStripMenuItem.Text = "Generate from";
 			// 
 			// midiFileToolStripMenuItem
 			// 
 			this.midiFileToolStripMenuItem.Name = "midiFileToolStripMenuItem";
-			this.midiFileToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+			this.midiFileToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
 			this.midiFileToolStripMenuItem.Text = "Midi file...";
 			this.midiFileToolStripMenuItem.Click += new System.EventHandler(this.midiFileToolStripMenuItem_Click);
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(12, 122);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(0, 13);
-			this.label1.TabIndex = 3;
-			// 
-			// midisfound
-			// 
-			this.midisfound.AutoSize = true;
-			this.midisfound.Location = new System.Drawing.Point(12, 26);
-			this.midisfound.Name = "midisfound";
-			this.midisfound.Size = new System.Drawing.Size(67, 13);
-			this.midisfound.TabIndex = 6;
-			this.midisfound.Text = "Midis found: ";
-			this.midisfound.Visible = false;
 			// 
 			// generateMidiFileDialog
 			// 
 			this.generateMidiFileDialog.FileName = "openFileDialog1";
 			this.generateMidiFileDialog.Filter = "Midi files|*.mid";
 			// 
+			// midiFilesBatchToolStripMenuItem
+			// 
+			this.midiFilesBatchToolStripMenuItem.Name = "midiFilesBatchToolStripMenuItem";
+			this.midiFilesBatchToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+			this.midiFilesBatchToolStripMenuItem.Text = "Midi files (Batch)...";
+			this.midiFilesBatchToolStripMenuItem.Click += new System.EventHandler(this.midiFilesBatchToolStripMenuItem_Click);
+			// 
 			// MainWindow
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(387, 262);
-			this.Controls.Add(this.midisfound);
-			this.Controls.Add(this.label1);
+			this.ClientSize = new System.Drawing.Size(487, 335);
 			this.Controls.Add(this.toolStrip1);
 			this.Controls.Add(this.button1);
 			this.Name = "MainWindow";
 			this.Text = "Form1";
+			this.Resize += new System.EventHandler(this.MainWindow_Resize);
 			this.toolStrip1.ResumeLayout(false);
 			this.toolStrip1.PerformLayout();
 			this.ResumeLayout(false);
@@ -217,15 +179,11 @@
 
         }
 
-        #endregion
+		#endregion
 
-        private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
-        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog2;
-        private System.Windows.Forms.Label midisfound;
 		private System.Windows.Forms.OpenFileDialog generateMidiFileDialog;
 		private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton2;
 		private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton3;
@@ -235,10 +193,8 @@
 		private System.Windows.Forms.ToolStripMenuItem generateFromToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem midiFileToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem exportAsToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem guitarHero3ToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem phaseShiftToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem foFixToolStripMenuItem;
 		private System.Windows.Forms.SaveFileDialog exportGuitarHero3FileDialog;
+		private System.Windows.Forms.ToolStripMenuItem midiFilesBatchToolStripMenuItem;
 	}
 }
 

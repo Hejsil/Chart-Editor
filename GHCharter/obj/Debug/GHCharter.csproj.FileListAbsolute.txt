@@ -1,8 +1,0 @@
-C:\Users\Hejsil\Documents\Documents\Studie\Code Projects\C#\GHCharter\GHCharter\bin\Debug\GHCharter.exe.config
-C:\Users\Hejsil\Documents\Documents\Studie\Code Projects\C#\GHCharter\GHCharter\obj\Debug\GHCharter.csprojResolveAssemblyReference.cache
-C:\Users\Hejsil\Documents\Documents\Studie\Code Projects\C#\GHCharter\GHCharter\bin\Debug\GHCharter.exe
-C:\Users\Hejsil\Documents\Documents\Studie\Code Projects\C#\GHCharter\GHCharter\bin\Debug\GHCharter.pdb
-C:\Users\Hejsil\Documents\Documents\Studie\Code Projects\C#\GHCharter\GHCharter\obj\Debug\GHCharter.exe
-C:\Users\Hejsil\Documents\Documents\Studie\Code Projects\C#\GHCharter\GHCharter\obj\Debug\GHCharter.pdb
-C:\Users\Hejsil\Documents\Documents\Studie\Code Projects\C#\GHCharter\GHCharter\bin\Debug\Midi.dll
-C:\Users\Hejsil\Documents\Documents\Studie\Code Projects\C#\GHCharter\GHCharter\bin\Debug\Midi.pdb

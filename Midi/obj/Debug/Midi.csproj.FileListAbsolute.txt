@@ -1,5 +1,0 @@
-C:\Users\Hejsil\Documents\Documents\Studie\Code Projects\C#\GHCharter\Midi\bin\Debug\Midi.dll
-C:\Users\Hejsil\Documents\Documents\Studie\Code Projects\C#\GHCharter\Midi\bin\Debug\Midi.pdb
-C:\Users\Hejsil\Documents\Documents\Studie\Code Projects\C#\GHCharter\Midi\obj\Debug\Midi.dll
-C:\Users\Hejsil\Documents\Documents\Studie\Code Projects\C#\GHCharter\Midi\obj\Debug\Midi.pdb
-C:\Users\Hejsil\Documents\Documents\Studie\Code Projects\C#\GHCharter\Midi\obj\Debug\Midi.csprojResolveAssemblyReference.cache
