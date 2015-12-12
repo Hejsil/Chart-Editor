@@ -20,3 +20,7 @@ D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\Sample\bin\Debug\Sanford.Mul
 D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\Sample\bin\Debug\Sanford.Multimedia.Timers.dll
 D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\Sample\bin\Debug\Sanford.Threading.dll
 D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\Sample\obj\Debug\Sample.csprojResolveAssemblyReference.cache
+D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\Sample\bin\Debug\Fractions.dll
+D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\Sample\bin\Debug\Fractions.xml
+D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\Sample\bin\Debug\NoteMapLib.dll
+D:\Hejsil\Documents\GitHubVisualStudio\Chart-Editor\Sample\bin\Debug\NoteMapLib.pdb

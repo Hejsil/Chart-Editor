@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Sanford.Multimedia.Midi;
 using System.IO;
+using NoteMapLib;
+using NoteMapLib.Generators;
+using NoteMapLib.Writers;
 
 namespace Sample
 {
@@ -12,6 +15,9 @@ namespace Sample
     {
         static void Main(string[] args)
         {
+            new GH3ChartWriter().Write(@"D:\Hejsil\Downloads\test.chart", new FromMidiNoteMapGenerator().Generate(@"D:\Hejsil\Downloads\FZC_Mute_City_Arr-KM.mid"));
+
+            /*
 			ChannelMessageBuilder channelBuilder = new ChannelMessageBuilder();
 			TempoChangeBuilder tempoBuilder = new TempoChangeBuilder();
 
@@ -70,6 +76,7 @@ namespace Sample
 			track2.Insert(480 + 760, channelBuilder.Result);
 
 			sequence.Save(@"D:\Hejsil\Downloads\text.mid");
-		}
+            */
+        }
     }
 }
