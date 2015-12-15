@@ -1,6 +1,6 @@
 ﻿using Fractions;
-using NoteMapLib.Model;
-using NoteMapLib.Model.Enums;
+using NoteMapLib.Models;
+using NoteMapLib.Models.Enums;
 using NoteMapLib.Writers.Enums;
 using System;
 using System.Collections.Generic;
@@ -14,6 +14,7 @@ namespace NoteMapLib.Writers
 {
     public class GH3ChartWriter
     {
+        #region Writing
         public void Write(string path, NoteMap notemap)
         {
             using (var str = new StreamWriter(path))
@@ -153,5 +154,6 @@ namespace NoteMapLib.Writers
 
             return res;
         }
+        #endregion
     }
 }

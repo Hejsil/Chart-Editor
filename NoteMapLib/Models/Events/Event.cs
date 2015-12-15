@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NoteMapLib.Model.Events
+namespace NoteMapLib.Models.Events
 {
     public abstract class Event : IComparable<Event>
     {

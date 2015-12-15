@@ -1,8 +1,8 @@
-﻿using NoteMapLib.Model.Enums;
+﻿using NoteMapLib.Models.Enums;
 using System;
 using System.Collections.Generic;
 
-namespace NoteMapLib.Model.Events
+namespace NoteMapLib.Models.Events
 {
 	public class TrackEvent : Event
 	{

@@ -1,11 +1,11 @@
-﻿using NoteMapLib.Model.Events;
+﻿using NoteMapLib.Models.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NoteMapLib.Model
+namespace NoteMapLib.Models
 {
     public class NoteMap : List<Track>
 	{
@@ -17,7 +17,7 @@ namespace NoteMapLib.Model
         #endregion
 
         #region Constructors
-        public NoteMap(int division = 64, int offset = 0)
+        public NoteMap(int division = 16, int offset = 0)
 		{
 			Division = division;
 			Offset = offset;

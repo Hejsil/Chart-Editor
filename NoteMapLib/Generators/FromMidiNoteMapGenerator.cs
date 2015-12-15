@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using NoteMapLib.Model;
+using NoteMapLib.Models;
 using Sanford.Multimedia.Midi;
-using NoteMapLib.Model.Enums;
+using NoteMapLib.Models.Enums;
 using MoreLinq;
-using NoteMapLib.Model.Events;
+using NoteMapLib.Models.Events;
 using System.Text.RegularExpressions;
 using Fractions;
 
@@ -27,7 +27,7 @@ namespace NoteMapLib.Generators
             // Creating a new NoteMap track for each track in the midi.
             foreach (var miditrack in midi)
             {
-                Model.Track track = new Model.Track();
+                Models.Track track = new Models.Track();
                 
                 List<Tuple<int, IMidiMessage>> onNotes;
                 List<Tuple<int, IMidiMessage>> offNotes;

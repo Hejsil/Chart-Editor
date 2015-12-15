@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NoteMapLib.Model.Enums
+namespace NoteMapLib.Models.Enums
 {
     public enum TrackEventTypes
     {

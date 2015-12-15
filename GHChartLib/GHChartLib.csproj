@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E31342BD-12DC-4D3E-B92F-7C34093B172F}</ProjectGuid>
+    <ProjectGuid>{52268E11-009B-4939-BDA9-4F81CDE56C2C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NoteMapLib</RootNamespace>
-    <AssemblyName>NoteMapLib</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <RootNamespace>GHChartLib</RootNamespace>
+    <AssemblyName>GHChartLib</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,21 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Fractions, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fractions.1.2.0.0\lib\net40\Fractions.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="MoreLinq.Portable, Version=1.4.18916.0, Culture=neutral, PublicKeyToken=384d532d7e88985d, processorArchitecture=MSIL">
-      <HintPath>..\packages\MoreLinq.Portable.1.4.0\lib\portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\MoreLinq.Portable.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Sanford.Multimedia.Midi, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Sanford.Multimedia.Midi.6.0.0.1\lib\net20\Sanford.Multimedia.Midi.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -54,22 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Generators\FromMidiNoteMapGenerator.cs" />
-    <Compile Include="Models\Enums\MetaEventTypes.cs" />
-    <Compile Include="Models\Enums\TrackDifficulties.cs" />
-    <Compile Include="Models\Enums\TrackTypes.cs" />
-    <Compile Include="Models\Events\Event.cs" />
-    <Compile Include="Models\Events\TrackEvent.cs" />
-    <Compile Include="Models\Events\MetaEvent.cs" />
-    <Compile Include="Models\Enums\TrackEventTypes.cs" />
-    <Compile Include="Models\NoteMap.cs" />
+    <Compile Include="Events\ChartEvent.cs" />
+    <Compile Include="ChartTrack.cs" />
+    <Compile Include="ChartTracks.cs" />
+    <Compile Include="Chart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Models\Track.cs" />
-    <Compile Include="Writers\Enums\ChartTracks.cs" />
-    <Compile Include="Writers\GH3ChartIO.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

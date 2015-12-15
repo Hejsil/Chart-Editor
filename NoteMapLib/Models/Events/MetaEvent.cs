@@ -1,8 +1,8 @@
 ﻿using System;
 using Fractions;
-using NoteMapLib.Model.Enums;
+using NoteMapLib.Models.Enums;
 
-namespace NoteMapLib.Model.Events
+namespace NoteMapLib.Models.Events
 {
 	public class MetaEvent : Event
 	{

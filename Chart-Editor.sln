@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoteMapLib", "NoteMapLib\No
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUIWPF", "GUIWPF\GUIWPF.csproj", "{D792BEB2-6C92-4136-AE55-5FF894AEB0AF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GHChartLib", "GHChartLib\GHChartLib.csproj", "{52268E11-009B-4939-BDA9-4F81CDE56C2C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{D792BEB2-6C92-4136-AE55-5FF894AEB0AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D792BEB2-6C92-4136-AE55-5FF894AEB0AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D792BEB2-6C92-4136-AE55-5FF894AEB0AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52268E11-009B-4939-BDA9-4F81CDE56C2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52268E11-009B-4939-BDA9-4F81CDE56C2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52268E11-009B-4939-BDA9-4F81CDE56C2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52268E11-009B-4939-BDA9-4F81CDE56C2C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
