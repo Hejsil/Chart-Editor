@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:GUIWPF.Views"
         xmlns:design="clr-namespace:GUIWPF.DesignInstances"
         xmlns:prism="http://prismlibrary.com/"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=design:MainWindowDesignInstance, IsDesignTimeCreatable=True}"
         prism:ViewModelLocator.AutoWireViewModel="True"
@@ -49,7 +50,7 @@
                 </MenuItem>
             </MenuItem>
         </Menu>
-        <TabControl DockPanel.Dock="Top" ItemsSource="{Binding Map}">
+        <TabControl x:Name="Tab" DockPanel.Dock="Top" ItemsSource="{Binding Map}">
             <TabControl.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Type}"></TextBlock>
@@ -57,7 +58,9 @@
             </TabControl.ItemTemplate>
             <TabControl.ContentTemplate>
                 <DataTemplate>
-
+                    <xctk:TimelinePanel BeginDate="01/01/2007" EndDate="12/31/2007" Orientation="Vertical">
+                        <Button xctk:TimelinePanel.Date="05/01/2007">Test</Button>
+                    </xctk:TimelinePanel>
                 </DataTemplate>
             </TabControl.ContentTemplate>
         </TabControl>

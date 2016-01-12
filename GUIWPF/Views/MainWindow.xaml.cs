@@ -18,11 +18,12 @@ namespace GUIWPF.Views
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindowOld : Window
+    public partial class MainWindow : Window
     {
-        public MainWindowOld()
+        public MainWindow()
         {
-            //InitializeComponent();
+            InitializeComponent();
+            Tab.ContentTemplate = new DataTemplate();
         }
     }
 }

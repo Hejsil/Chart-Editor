@@ -111,13 +111,16 @@ namespace NoteMapLib.Generators
 
         private List<TrackEvent> GenerateTrackEvents(List<Tuple<int, IMidiMessage>> onNotes, List<Tuple<int, IMidiMessage>> offNotes)
         {
-            List<TrackEvent> result = new List<TrackEvent>();
+            var result = new List<TrackEvent>();
 
             // Save all not mapped notes
-            List<Tuple<int, IMidiMessage>> buffer = new List<Tuple<int, IMidiMessage>>();
+            var buffer = new List<Tuple<int, IMidiMessage>>();
 
             // The list used to map midi-notes to NoteMap-notes.
-            List<int> mapping = new List<int>(5);
+            // It stores two ints. One for the note that should be mapped,
+            // And one reprecenting when this note was added to the list.
+            var mapping = new List<Tuple<int, int>>(5);
+            var age = 0;
 
             // Iterate all on note events in the midi
             foreach (var on in onNotes)
@@ -125,17 +128,23 @@ namespace NoteMapLib.Generators
                 // Get the note number in the event.
                 int note = on.Item2.GetBytes()[1];
 
-                if (!mapping.Contains(note))
+                var map = mapping.FirstOrDefault(x => x.Item2 == note);
+                if (map == null)
                 {
                     // When the mapping list is full, the note mapping starts.
                     if (mapping.Count == mapping.Capacity)
                     {
                         result.AddRange(MapBuffer(buffer, offNotes, mapping));
-                        mapping.Clear();
+                        mapping.Remove(mapping.MinBy(x => x.Item1));
                         buffer.Clear();
                     }
 
-                    mapping.Add(note);
+                    mapping.Add(new Tuple<int, int>(age++, note));
+                }
+                else
+                {
+                    mapping.Remove(map);
+                    mapping.Add(new Tuple<int, int>(age++, map.Item2));
                 }
 
                 buffer.Add(on);
@@ -146,36 +155,42 @@ namespace NoteMapLib.Generators
             return result;
         }
 
-        private IEnumerable<TrackEvent> MapBuffer(List<Tuple<int, IMidiMessage>> buffer, List<Tuple<int, IMidiMessage>> offNotes, List<int> mapping)
+        private IEnumerable<TrackEvent> MapBuffer(List<Tuple<int, IMidiMessage>> buffer, 
+                                                  List<Tuple<int, IMidiMessage>> offNotes, 
+                                                  List<Tuple<int, int>> mapping)
         {
             // Sort mapping list. This is done because the index of each element is used later.
-            mapping.Sort();
+            mapping.Sort((x1, x2) => x1.Item2.CompareTo(x2.Item2));
             
-            foreach (var note in buffer)
+            foreach (var message in buffer)
             {
                 // Length of the note.
-                int length = 0;
+                var length = 0;
+                var note = message.Item2.GetBytes()[1];
 
                 // Get the closest offnote to the current note, where the distance between them must not be under 0.
-                Tuple<int, IMidiMessage> closest = (from off in offNotes
-                                                    where off.Item2.GetBytes()[1] == note.Item2.GetBytes()[1] &&
-                                                          off.Item1 - note.Item1 >= 0
-                                                    orderby off.Item1 ascending
-                                                    select off)
-                                                    .FirstOrDefault();
+                var aboveNotes = offNotes.FindAll(x => x.Item2.GetBytes()[1] == note && x.Item1 - message.Item1 > 0);
+                Tuple<int, IMidiMessage> closest = null;
+
+                if (aboveNotes.Count > 0)
+                {
+                    closest = aboveNotes.MinBy(x => x.Item1);
+                }
 
                 // If a offnote was found, set length to the distance between the current note and closest note
                 if (closest != null)
                 {
-                    length = closest.Item1 - note.Item1;
+                    length = closest.Item1 - message.Item1;
+                    offNotes.Remove(closest);
                 }
-
-                if (mapping.IndexOf(note.Item2.GetBytes()[1]) < 0 || mapping.IndexOf(note.Item2.GetBytes()[1]) >= 5)
-                {
-                    var test = mapping.IndexOf(note.Item2.GetBytes()[1]);
-                }
-
-                yield return new TrackEvent() { Length = length, Position = note.Item1, Type = TrackEventTypes.Note, Value = mapping.IndexOf(note.Item2.GetBytes()[1]) };
+                
+                yield return new TrackEvent()
+                    {
+                        Length = length,
+                        Position = message.Item1,
+                        Type = TrackEventTypes.Note,
+                        Value = mapping.IndexOf(mapping.FirstOrDefault(x => x.Item2 == message.Item2.GetBytes()[1]))
+                    };
             }
         }
 
