@@ -1,0 +1,6 @@
+C:\Users\Jimmi\Source\Repos\Chart-Editor\GUIWPF\bin\Debug\GUIWPF.exe.config
+C:\Users\Jimmi\Source\Repos\Chart-Editor\GUIWPF\obj\Debug\GUIWPF.csprojResolveAssemblyReference.cache
+C:\Users\Jimmi\Source\Repos\Chart-Editor\GUIWPF\obj\Debug\Views\MainWindow.g.cs
+C:\Users\Jimmi\Source\Repos\Chart-Editor\GUIWPF\obj\Debug\App.g.cs
+C:\Users\Jimmi\Source\Repos\Chart-Editor\GUIWPF\obj\Debug\GUIWPF_MarkupCompile.cache
+C:\Users\Jimmi\Source\Repos\Chart-Editor\GUIWPF\obj\Debug\GUIWPF_MarkupCompile.lref

@@ -39,3 +39,6 @@ D:\Hejsil\Documents\GitHub\Chart-Editor\Sample\bin\Debug\Fractions.dll
 D:\Hejsil\Documents\GitHub\Chart-Editor\Sample\bin\Debug\NoteMapLib.pdb
 D:\Hejsil\Documents\GitHub\Chart-Editor\Sample\bin\Debug\Fractions.xml
 D:\Hejsil\Documents\GitHub\Chart-Editor\Sample\obj\Debug\Sample.csprojResolveAssemblyReference.cache
+C:\Users\Jimmi\Source\Repos\Chart-Editor\Sample\bin\Debug\Sample.exe.config
+C:\Users\Jimmi\Source\Repos\Chart-Editor\Sample\obj\Debug\Sample.exe
+C:\Users\Jimmi\Source\Repos\Chart-Editor\Sample\obj\Debug\Sample.pdb

@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 using Sanford.Multimedia.Midi;
 using System.IO;
 using NoteMapLib;
-using NoteMapLib.Generators;
-using NoteMapLib.Writers;
+using NoteMapLib.Models;
 
 namespace Sample
 {
@@ -15,7 +14,7 @@ namespace Sample
     {
         static void Main(string[] args)
         {
-            new GH3ChartWriter().Write(@"D:\Hejsil\Downloads\test.chart", new FromMidiNoteMapGenerator().Generate(@"D:\Hejsil\Downloads\FZC_Mute_City_Arr-KM.mid"));
+            NoteMap.GenerateFromMidi(@"D:\Hejsil\Downloads\FZC_Mute_City_Arr-KM.mid").WriteGuitarHeroChart(@"D:\Hejsil\Downloads\test.chart");
 
             /*
 			ChannelMessageBuilder channelBuilder = new ChannelMessageBuilder();
