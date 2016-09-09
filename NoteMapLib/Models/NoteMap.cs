@@ -32,7 +32,7 @@ namespace NoteMapLib.Models
         #endregion
 
 
-        #region Generate from Midi
+        #region Generate from Midi (Alot of this code should probably be rewritten)
         /// <summary>
         /// Generates a Notemap from the midifile found in Path
         /// </summary>
@@ -108,13 +108,9 @@ namespace NoteMapLib.Models
                             case 0x90:
                                 // If velocity of a Note On event is 0, then its a note off.
                                 if (bytes[2] == 0)
-                                {
                                     offNotes.Add(new Tuple<int, IMidiMessage>(position, message));
-                                }
                                 else
-                                {
                                     onNotes.Add(new Tuple<int, IMidiMessage>(position, message));
-                                }
                                 break;
                         }
                         break;
@@ -191,9 +187,7 @@ namespace NoteMapLib.Models
                 Tuple<int, IMidiMessage> closest = null;
 
                 if (aboveNotes.Count > 0)
-                {
                     closest = aboveNotes.MinBy(x => x.Item1);
-                }
 
                 // If a offnote was found, set length to the distance between the current note and closest note
                 if (closest != null)
