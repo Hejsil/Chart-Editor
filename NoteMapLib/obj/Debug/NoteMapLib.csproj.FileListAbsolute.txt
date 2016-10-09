@@ -9,3 +9,14 @@ C:\Users\Jimmi\Source\Repos\Chart-Editor\NoteMapLib\bin\Debug\Sanford.Multimedia
 C:\Users\Jimmi\Source\Repos\Chart-Editor\NoteMapLib\obj\Debug\NoteMapLib.csprojResolveAssemblyReference.cache
 C:\Users\Jimmi\Source\Repos\Chart-Editor\NoteMapLib\obj\Debug\NoteMapLib.dll
 C:\Users\Jimmi\Source\Repos\Chart-Editor\NoteMapLib\obj\Debug\NoteMapLib.pdb
+D:\Dev\Projects\Chart-Editor\NoteMapLib\bin\Debug\NoteMapLib.dll
+D:\Dev\Projects\Chart-Editor\NoteMapLib\bin\Debug\NoteMapLib.pdb
+D:\Dev\Projects\Chart-Editor\NoteMapLib\bin\Debug\Fractions.dll
+D:\Dev\Projects\Chart-Editor\NoteMapLib\bin\Debug\MoreLinq.Portable.dll
+D:\Dev\Projects\Chart-Editor\NoteMapLib\bin\Debug\Sanford.Multimedia.Midi.dll
+D:\Dev\Projects\Chart-Editor\NoteMapLib\bin\Debug\Fractions.xml
+D:\Dev\Projects\Chart-Editor\NoteMapLib\bin\Debug\MoreLinq.Portable.xml
+D:\Dev\Projects\Chart-Editor\NoteMapLib\bin\Debug\Sanford.Multimedia.Midi.xml
+D:\Dev\Projects\Chart-Editor\NoteMapLib\obj\Debug\NoteMapLib.csprojResolveAssemblyReference.cache
+D:\Dev\Projects\Chart-Editor\NoteMapLib\obj\Debug\NoteMapLib.dll
+D:\Dev\Projects\Chart-Editor\NoteMapLib\obj\Debug\NoteMapLib.pdb
