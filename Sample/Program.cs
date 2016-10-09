@@ -1,20 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Sanford.Multimedia.Midi;
-using System.IO;
-using NoteMapLib;
-using NoteMapLib.Models;
+﻿using NoteMapLib;
 
 namespace Sample
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            NoteMap.GenerateFromMidi(@"D:\Hejsil\Downloads\FZC_Mute_City_Arr-KM.mid").WriteGuitarHeroChart(@"D:\Hejsil\Downloads\test.chart");
+            NoteMap.GenerateFromMidi(@"D:\Users\Jimmi\Downloads\33557_Dragonforce--Through-Fire-and-Flames.mid")
+                .WriteGuitarHeroChart(@"D:\Users\Jimmi\Downloads\test.chart");
 
             /*
 			ChannelMessageBuilder channelBuilder = new ChannelMessageBuilder();
@@ -30,7 +23,7 @@ namespace Sample
 			sequence.Add(track1);
 			sequence.Add(track2);
 
-			tempoBuilder.Tempo = (int)(1 / 150.0 * 60000000);
+			tempoBuilder.TempoEvent = (int)(1 / 150.0 * 60000000);
 			tempoBuilder.Build();
 			track0.Insert(0, tempoBuilder.Result);
 
