@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NoteMapLib</RootNamespace>
     <AssemblyName>NoteMapLib</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -31,16 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Fractions, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fractions.1.2.0.0\lib\net40\Fractions.dll</HintPath>
+    <Reference Include="Fractions, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fractions.2.0.1.0\lib\net45\Fractions.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MoreLinq.Portable, Version=1.4.18916.0, Culture=neutral, PublicKeyToken=384d532d7e88985d, processorArchitecture=MSIL">
-      <HintPath>..\packages\MoreLinq.Portable.1.4.0\lib\portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\MoreLinq.Portable.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Sanford.Multimedia.Midi, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Sanford.Multimedia.Midi.6.0.0.1\lib\net20\Sanford.Multimedia.Midi.dll</HintPath>
+    <Reference Include="Sanford.Multimedia.Midi, Version=6.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sanford.Multimedia.Midi.6.1.2\lib\net20\Sanford.Multimedia.Midi.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
