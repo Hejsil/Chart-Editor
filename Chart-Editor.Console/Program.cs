@@ -1,4 +1,5 @@
 ﻿using System;
+using NoteMapLib;
 
 namespace Chart_Editor.ConsoleApp
 {
@@ -21,9 +22,8 @@ namespace Chart_Editor.ConsoleApp
 
         public static void Main(string[] args)
         {
-            foreach (var item in args)
-                Console.WriteLine(item);
-            Console.ReadKey();
+            NoteMap.GenerateFromMidi(@"D:\Users\Jimmi\Downloads\33557_Dragonforce--Through-Fire-and-Flames.mid")
+                .WriteGuitarHeroChart(@"D:\Users\Jimmi\Downloads\test.chart");
         }
     }
 }
