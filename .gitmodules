@@ -1,0 +1,3 @@
+[submodule "HejsilsUtilities"]
+	path = HejsilsUtilities
+	url = https://github.com/Hejsil/Chart-Editor.git
