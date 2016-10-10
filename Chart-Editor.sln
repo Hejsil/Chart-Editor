@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoteMapLib", "NoteMapLib\No
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chart-Editor.Console", "Chart-Editor.Console\Chart-Editor.Console.csproj", "{4FEB0205-E609-4D0A-AD19-6C3C6801AD7D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HejsilsUtilities.Collections", "HejsilsUtilities\HejsilsUtilities.Collections\HejsilsUtilities.Collections.csproj", "{CE1B3C8C-DB94-4CB6-8DB8-A865185B8B3D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{4FEB0205-E609-4D0A-AD19-6C3C6801AD7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4FEB0205-E609-4D0A-AD19-6C3C6801AD7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4FEB0205-E609-4D0A-AD19-6C3C6801AD7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE1B3C8C-DB94-4CB6-8DB8-A865185B8B3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE1B3C8C-DB94-4CB6-8DB8-A865185B8B3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE1B3C8C-DB94-4CB6-8DB8-A865185B8B3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE1B3C8C-DB94-4CB6-8DB8-A865185B8B3D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Fractions;
+using HejsilsUtilities.Collections;
 using NoteMapLib.Events;
 using NoteMapLib.Events.MetaEvents;
 using Sanford.Multimedia.Midi;
@@ -41,8 +42,7 @@ namespace NoteMapLib
                 var noteOns = new List<Tuple<int, ChannelMessage>>();
 
                 // used to map midi tunes to guitar hero notes.
-                // HACK: using SortedList, but i only need a list that always sorts, so key, value pairing
-                var mapping = new SortedList<int, int>(5);
+                var mapping = new SortingList<int>(5);
 
                 // used to keep track of the usage of the notes in the mapping list.
                 // this is needed when mapping is full, and one of the tunes should be replaced
@@ -70,7 +70,7 @@ namespace NoteMapLib
                         Value = noteOn.Data1
                     };
 
-                    var index = mapping.IndexOfKey(noteOn.Data1);
+                    var index = mapping.IndexOf(noteOn.Data1);
 
                     // in mapping
                     if (index != -1)
@@ -87,7 +87,7 @@ namespace NoteMapLib
                             // map all unmapped notes and add them to the track
                             foreach (var note in unmappedNotes)
                             {
-                                note.Value = mapping.IndexOfKey(note.Value);
+                                note.Value = mapping.IndexOf(note.Value);
                                 track.Events.Add(note);
                             }
 
@@ -99,7 +99,7 @@ namespace NoteMapLib
                         }
 
                         // add tune to mapping and usage queue
-                        mapping.Add(noteOn.Data1, noteOn.Data1);
+                        mapping.Add(noteOn.Data1);
                         usageQueue.Add(noteOn.Data1);
                     }
 
@@ -203,7 +203,7 @@ namespace NoteMapLib
 
                 foreach (var note in unmappedNotes)
                 {
-                    note.Value = mapping.IndexOfKey(note.Value);
+                    note.Value = mapping.IndexOf(note.Value);
                     track.Events.Add(note);
                 }
 
@@ -226,7 +226,7 @@ namespace NoteMapLib
         #endregion
 
         #region Write guitar hero char
-        enum ChartTracks
+        private enum ChartTracks
         {
             SyncTrack = 0x00,
             Events = 0x01,
