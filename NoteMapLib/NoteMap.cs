@@ -13,7 +13,6 @@ namespace NoteMapLib
     public class NoteMap
     {
         #region Constructors
-
         public NoteMap(int division = 16, int offset = 0)
         {
             Division = division;
@@ -25,7 +24,7 @@ namespace NoteMapLib
         #region Generate from Midi
 
         /// <summary>
-        ///     Generates a Notemap from the midifile found in Path
+        /// Generates a Notemap from the midifile found in Path
         /// </summary>
         public static NoteMap GenerateFromMidi(string path)
         {
@@ -227,7 +226,6 @@ namespace NoteMapLib
         #endregion
 
         #region Write guitar hero char
-
         enum ChartTracks
         {
             SyncTrack = 0x00,
