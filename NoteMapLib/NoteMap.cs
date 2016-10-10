@@ -42,7 +42,7 @@ namespace NoteMapLib
                 var noteOns = new List<Tuple<int, ChannelMessage>>();
 
                 // used to map midi tunes to guitar hero notes.
-                var mapping = new SortingList<int>(5);
+                var mapping = new AlwaysSortedList<int>(5);
 
                 // used to keep track of the usage of the notes in the mapping list.
                 // this is needed when mapping is full, and one of the tunes should be replaced
@@ -55,7 +55,7 @@ namespace NoteMapLib
                 // this lambda is needed two different places in this function.
                 // it process' an NoteOn into a track event.
                 // it needs to be here, so it can capture the variables above
-                Action<Tuple<int, ChannelMessage>, int> ProcessNoteOn = (noteOnTuple, pos) =>
+                Action<Tuple<int, ChannelMessage>, int> processNoteOn = (noteOnTuple, pos) =>
                 {
                     var noteOn = noteOnTuple.Item2;
                     var noteOnPosition = noteOnTuple.Item1;
@@ -118,13 +118,13 @@ namespace NoteMapLib
                         // note events data1 is the tune and data2 is velocity
                         // if an NoteOn has velocity is 0, then it's the same as it being a NoteOff
                         if (cMessage.Command == ChannelCommand.NoteOff ||
-                            (cMessage.Command == ChannelCommand.NoteOn && cMessage.Data2 == 0))
+                           (cMessage.Command == ChannelCommand.NoteOn && cMessage.Data2 == 0))
                         {
                             // find the first NoteOn that has the same tune as the current NoteOff.
                             // these two notes will be a pair, and will be used together to create a Note TrackEvent
                             var noteOnTuple = noteOns.Find(x => x.Item2.Data1 == cMessage.Data1);
 
-                            ProcessNoteOn(noteOnTuple, position);
+                            processNoteOn(noteOnTuple, position);
 
                             noteOns.Remove(noteOnTuple);
                         }
@@ -198,7 +198,7 @@ namespace NoteMapLib
 
                 foreach (var noteOn in noteOns)
                 {
-                    ProcessNoteOn(noteOn, noteOn.Item1);
+                    processNoteOn(noteOn, noteOn.Item1);
                 }
 
                 foreach (var note in unmappedNotes)
