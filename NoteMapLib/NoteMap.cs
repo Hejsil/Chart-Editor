@@ -65,7 +65,7 @@ namespace NoteMapLib
                     var trackNote = new TrackEvent
                     {
                         Position = noteOnPosition,
-                        Length = position - noteOnPosition,
+                        Length = pos - noteOnPosition,
                         Type = TrackEvent.Types.Note,
                         Value = noteOn.Data1
                     };
