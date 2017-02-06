@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Fractions;
-using HejsilsUtilities.Collections;
 using NoteMapLib.Events;
 using NoteMapLib.Events.MetaEvents;
 using Sanford.Multimedia.Midi;
