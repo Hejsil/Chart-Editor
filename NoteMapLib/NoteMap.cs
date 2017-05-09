@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using Fractions;
 using NoteMapLib.Events;
@@ -21,6 +22,16 @@ namespace NoteMapLib
 
         #endregion
 
+        #region Properties
+
+        public int Offset { get; set; }
+        public int Division { get; }
+
+        public List<Track> Tracks { get; } = new List<Track>();
+        public List<MetaEvent> MetaEvents { get; } = new List<MetaEvent>();
+
+        #endregion
+
         #region Generate from Midi
 
         /// <summary>
@@ -31,196 +42,186 @@ namespace NoteMapLib
             var midi = new Sequence(path);
             var result = new NoteMap(midi.Division);
 
-            foreach (var miditrack in midi)
-            {
-                var track = new Track(Track.Types.Guitar);
-                var position = 0;
-
-                // teporarily stores NoteOn channel messages that havn't been paired up with an NoteOff message.
-                // also stores the position of that message relative to the start of the midi file
-                var noteOns = new List<Tuple<int, ChannelMessage>>();
-
-                // used to map midi tunes to guitar hero notes.
-                var mapping = new AlwaysSortedList<int>(5);
-
-                // used to keep track of the usage of the notes in the mapping list.
-                // this is needed when mapping is full, and one of the tunes should be replaced
-                var usageQueue = new List<int>(5);
-
-                // keep track of notes that have yet to be fully processed
-                var unmappedNotes = new List<TrackEvent>();
-
-                // HACK: this is prettier than making a private none local function.
-                // this lambda is needed two different places in this function.
-                // it process' an NoteOn into a track event.
-                // it needs to be here, so it can capture the variables above
-                Action<Tuple<int, ChannelMessage>, int> processNoteOn = (noteOnTuple, pos) =>
-                {
-                    var noteOn = noteOnTuple.Item2;
-                    var noteOnPosition = noteOnTuple.Item1;
-
-                    // we set the value of this track event to be the tune of the midi note.
-                    // this will later in the process be converted to the actual value later
-                    var trackNote = new TrackEvent
-                    {
-                        Position = noteOnPosition,
-                        Length = pos - noteOnPosition,
-                        Type = TrackEvent.Types.Note,
-                        Value = noteOn.Data1
-                    };
-
-                    var index = mapping.IndexOf(noteOn.Data1);
-
-                    // in mapping
-                    if (index != -1)
-                    {
-                        // move this tune to the end of the usageQueue
-                        usageQueue.Remove(noteOn.Data1);
-                        usageQueue.Add(noteOn.Data1);
-                    }
-                    // not in mapping
-                    else
-                    {
-                        if (mapping.Capacity == mapping.Count)
-                        {
-                            // map all unmapped notes and add them to the track
-                            foreach (var note in unmappedNotes)
-                            {
-                                note.Value = mapping.IndexOf(note.Value);
-                                track.Events.Add(note);
-                            }
-
-                            unmappedNotes.Clear();
-
-                            // remove the least used tune in mapping
-                            mapping.Remove(usageQueue.First());
-                            usageQueue.RemoveAt(0);
-                        }
-
-                        // add tune to mapping and usage queue
-                        mapping.Add(noteOn.Data1);
-                        usageQueue.Add(noteOn.Data1);
-                    }
-
-                    unmappedNotes.Add(trackNote);
-                };
-
-                foreach (var @event in miditrack.Iterator())
-                {
-                    var message = @event.MidiMessage;
-                    position += @event.DeltaTicks;
-
-                    if (message.MessageType == MessageType.Channel)
-                    {
-                        var cMessage = message as ChannelMessage;
-
-                        // note events data1 is the tune and data2 is velocity
-                        // if an NoteOn has velocity is 0, then it's the same as it being a NoteOff
-                        if (cMessage.Command == ChannelCommand.NoteOff ||
-                           (cMessage.Command == ChannelCommand.NoteOn && cMessage.Data2 == 0))
-                        {
-                            // find the first NoteOn that has the same tune as the current NoteOff.
-                            // these two notes will be a pair, and will be used together to create a Note TrackEvent
-                            var noteOnTuple = noteOns.Find(x => x.Item2.Data1 == cMessage.Data1);
-
-                            processNoteOn(noteOnTuple, position);
-
-                            noteOns.Remove(noteOnTuple);
-                        }
-                        else if (cMessage.Command == ChannelCommand.NoteOn)
-                        {
-                            noteOns.Add(new Tuple<int, ChannelMessage>(position, cMessage));
-                        }
-                    }
-                    else if (message.MessageType == MessageType.Meta)
-                    {
-                        var mMessage = message as MetaMessage;
-                        var bytes = mMessage.GetBytes();
-
-                        if (mMessage.MetaType == MetaType.Tempo)
-                        {
-                            var value = 0;
-                            var offset = bytes.Length - 1;
-
-                            foreach (var item in bytes)
-                            {
-                                value += item << (offset*8);
-                                offset--;
-                            }
-
-                            result.MetaEvents.Add(new TempoEvent
-                            {
-                                Position = position,
-                                Tempo = (int) (60000000000/value)
-                            });
-                        }
-                        else if (mMessage.MetaType == MetaType.TimeSignature)
-                        {
-                            result.MetaEvents.Add(new TimeSignature
-                            {
-                                Position = position,
-                                Signature = new Fraction(bytes[0], (int) Math.Pow(2d, bytes[1]))
-                            });
-                        }
-                        else if (mMessage.MetaType == MetaType.TimeSignature ||
-                                 mMessage.MetaType == MetaType.InstrumentName)
-                        {
-                            if (track.Type != Track.Types.Unknown)
-                                break;
-
-                            var chararray = new char[bytes.Length];
-                            bytes.CopyTo(chararray, 0);
-                            var name = new string(chararray);
-                            var match = Regex.Match(name, "guitar|bass|drum|key", RegexOptions.IgnoreCase);
-
-                            if (!match.Success)
-                                break;
-
-                            switch (match.Value.ToLower())
-                            {
-                                case "guitar":
-                                    track.Type = Track.Types.Guitar;
-                                    break;
-                                case "bass":
-                                    track.Type = Track.Types.Bass;
-                                    break;
-                                case "drum":
-                                    track.Type = Track.Types.Drums;
-                                    break;
-                                case "key":
-                                    track.Type = Track.Types.Keys;
-                                    break;
-                            }
-                        }
-                    }
-                }
-
-                foreach (var noteOn in noteOns)
-                {
-                    processNoteOn(noteOn, noteOn.Item1);
-                }
-
-                foreach (var note in unmappedNotes)
-                {
-                    note.Value = mapping.IndexOf(note.Value);
-                    track.Events.Add(note);
-                }
-
-                result.Tracks.Add(track);
-            }
-
+            result.Tracks.AddRange(midi.Select(track => GenerateTrack(result, track)));
             return result;
         }
 
-        #endregion
 
-        #region Properties
+        private static Track GenerateTrack(NoteMap map, Sanford.Multimedia.Midi.Track midiTrack)
+        {
+            var track = new Track(Track.Types.Guitar);
+            var position = 0;
 
-        public int Offset { get; set; }
-        public int Division { get; }
+            // teporarily stores NoteOn channel messages that havn't been paired up with an NoteOff message.
+            // also stores the position of that message relative to the start of the midi file
+            var noteOns = new List<Tuple<int, ChannelMessage>>();
 
-        public List<Track> Tracks { get; private set; } = new List<Track>();
-        public List<MetaEvent> MetaEvents { get; } = new List<MetaEvent>();
+            // used to map midi tunes to guitar hero notes.
+            var mapping = new AlwaysSortedList<int>(5);
+
+            // used to keep track of the usage of the notes in the mapping list.
+            // this is needed when mapping is full, and one of the tunes should be replaced
+            var usageQueue = new List<int>(5);
+
+            // keep track of notes that have yet to be fully processed
+            var unmappedNotes = new List<TrackEvent>();
+
+            // HACK: this is prettier than making a private none local function.
+            // this lambda is needed two different places in this function.
+            // it process' an NoteOn into a track event.
+            // it needs to be here, so it can capture the variables above
+            Action<Tuple<int, ChannelMessage>, int> processNoteOn = (noteOnTuple, pos) =>
+            {
+                var noteOn = noteOnTuple.Item2;
+                var noteOnPosition = noteOnTuple.Item1;
+
+                // we set the value of this track event to be the tune of the midi note.
+                // this will later in the process be converted to the actual value later
+                var trackNote = new TrackEvent
+                {
+                    Position = noteOnPosition,
+                    Length = pos - noteOnPosition,
+                    Type = TrackEvent.Types.Note,
+                    Value = noteOn.Data1
+                };
+
+                var index = mapping.IndexOf(noteOn.Data1);
+
+                // in mapping
+                if (index != -1)
+                {
+                    // move this tune to the end of the usageQueue
+                    usageQueue.Remove(noteOn.Data1);
+                    usageQueue.Add(noteOn.Data1);
+                }
+                // not in mapping
+                else
+                {
+                    if (mapping.Capacity == mapping.Count)
+                    {
+                        // map all unmapped notes and add them to the track
+                        foreach (var note in unmappedNotes)
+                        {
+                            note.Value = mapping.IndexOf(note.Value);
+                            track.Events.Add(note);
+                        }
+
+                        unmappedNotes.Clear();
+
+                        // remove the least used tune in mapping
+                        mapping.Remove(usageQueue.First());
+                        usageQueue.RemoveAt(0);
+                    }
+
+                    // add tune to mapping and usage queue
+                    mapping.Add(noteOn.Data1);
+                    usageQueue.Add(noteOn.Data1);
+                }
+
+                unmappedNotes.Add(trackNote);
+            };
+
+            foreach (var @event in midiTrack.Iterator())
+            {
+                var message = @event.MidiMessage;
+                position += @event.DeltaTicks;
+
+                if (message.MessageType == MessageType.Channel)
+                {
+                    var cMessage = message as ChannelMessage;
+
+                    // note events data1 is the tune and data2 is velocity
+                    // if an NoteOn has velocity is 0, then it's the same as it being a NoteOff
+                    if (cMessage.Command == ChannelCommand.NoteOff ||
+                        (cMessage.Command == ChannelCommand.NoteOn && cMessage.Data2 == 0))
+                    {
+                        // find the first NoteOn that has the same tune as the current NoteOff.
+                        // these two notes will be a pair, and will be used together to create a Note TrackEvent
+                        var noteOnTuple = noteOns.Find(x => x.Item2.Data1 == cMessage.Data1);
+
+                        processNoteOn(noteOnTuple, position);
+
+                        noteOns.Remove(noteOnTuple);
+                    }
+                    else if (cMessage.Command == ChannelCommand.NoteOn)
+                    {
+                        noteOns.Add(new Tuple<int, ChannelMessage>(position, cMessage));
+                    }
+                }
+                else if (message.MessageType == MessageType.Meta)
+                {
+                    var mMessage = message as MetaMessage;
+                    var bytes = mMessage.GetBytes();
+
+                    if (mMessage.MetaType == MetaType.Tempo)
+                    {
+                        var value = 0;
+                        var offset = bytes.Length - 1;
+
+                        foreach (var item in bytes)
+                        {
+                            value += item << (offset*8);
+                            offset--;
+                        }
+
+                        map.MetaEvents.Add(new TempoEvent
+                        {
+                            Position = position,
+                            Tempo = (int) (60000000000/value)
+                        });
+                    }
+                    else if (mMessage.MetaType == MetaType.TimeSignature)
+                    {
+                        map.MetaEvents.Add(new TimeSignature
+                        {
+                            Position = position,
+                            Signature = new Fraction(bytes[0], (int) Math.Pow(2d, bytes[1]))
+                        });
+                    }
+                    else if (mMessage.MetaType == MetaType.TimeSignature ||
+                             mMessage.MetaType == MetaType.InstrumentName)
+                    {
+                        if (track.Type != Track.Types.Unknown)
+                            break;
+
+                        var name = Encoding.Default.GetString(bytes);
+                        var match = Regex.Match(name, "guitar|bass|drum|key", RegexOptions.IgnoreCase);
+
+                        if (!match.Success)
+                            break;
+
+                        switch (match.Value.ToLower())
+                        {
+                            case "guitar":
+                                track.Type = Track.Types.Guitar;
+                                break;
+                            case "bass":
+                                track.Type = Track.Types.Bass;
+                                break;
+                            case "drum":
+                                track.Type = Track.Types.Drums;
+                                break;
+                            case "key":
+                                track.Type = Track.Types.Keys;
+                                break;
+                        }
+                    }
+                }
+            }
+
+            foreach (var noteOn in noteOns)
+            {
+                processNoteOn(noteOn, noteOn.Item1);
+            }
+
+            foreach (var note in unmappedNotes)
+            {
+                note.Value = mapping.IndexOf(note.Value);
+                track.Events.Add(note);
+            }
+
+            return track;
+        }
 
         #endregion
 
@@ -290,8 +291,8 @@ namespace NoteMapLib
 
                 stream.WriteLine("[Song]");
                 stream.WriteLine("{");
-                stream.WriteLine("\tOffset = " + Offset);
-                stream.WriteLine("\tResolution = " + Division);
+                stream.WriteLine($"\tOffset = {Offset}");
+                stream.WriteLine($"\tResolution = {Division}");
                 stream.WriteLine("}");
 
                 stream.WriteLine("[SyncTrack]");
@@ -301,11 +302,11 @@ namespace NoteMapLib
                 {
                     if (evnt is TempoEvent)
                     {
-                        stream.WriteLine("	{0} = B {1}", evnt.Position, (evnt as TempoEvent).Tempo);
+                        stream.WriteLine($"\t{evnt.Position} = B {(evnt as TempoEvent).Tempo}");
                     }
                     else if (evnt is TimeSignature)
                     {
-                        stream.WriteLine("	{0} = TS {1}", evnt.Position, (evnt as TimeSignature).Signature.Numerator);
+                        stream.WriteLine($"\t{evnt.Position} = TS {(evnt as TimeSignature).Signature.Numerator}");
                     }
                 }
 
@@ -318,7 +319,7 @@ namespace NoteMapLib
                 {
                     if (evnt is SectionName)
                     {
-                        stream.WriteLine("	{0} = E \"section {1}\"", evnt.Position, (evnt as SectionName).Name);
+                        stream.WriteLine($"\t{evnt.Position} = E \"section {(evnt as SectionName).Name}\"");
                     }
                 }
 
@@ -364,7 +365,7 @@ namespace NoteMapLib
                             trackType = ChartTracks.DontChart;
                     }
 
-                    stream.WriteLine("[" + trackType + "]");
+                    stream.WriteLine($"[{trackType}]");
                     stream.WriteLine("{");
 
                     foreach (var evnt in track.Events)
@@ -372,13 +373,13 @@ namespace NoteMapLib
                         switch (evnt.Type)
                         {
                             case TrackEvent.Types.Note:
-                                stream.WriteLine("	{0} = N {1} {2}", evnt.Position, evnt.Value, evnt.Length);
+                                stream.WriteLine($"\t{evnt.Position} = N {evnt.Value} {evnt.Length}");
                                 break;
                             case TrackEvent.Types.Force:
                             case TrackEvent.Types.Tap:
                                 throw new NotImplementedException();
                             case TrackEvent.Types.Overdrive:
-                                stream.WriteLine("	{0} = S 2 {1}", evnt.Position, evnt.Length);
+                                stream.WriteLine($"\t{evnt.Position} = S 2 {evnt.Length}");
                                 break;
                         }
                     }
